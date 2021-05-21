@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Customers from "./Components/Customers";
+import Header from "./Components/Header";
 
 function App() {
   const [customers, setCustomers] = useState([]);
@@ -23,6 +24,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header />
       <Customers customers={customers} loading={loading} />
     </div>
   );
