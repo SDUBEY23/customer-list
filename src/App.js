@@ -6,8 +6,6 @@ import Header from "./Components/Header";
 function App() {
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [customerPerPage] = useState(10);
 
   useEffect(() => {
     const fetchCustomer = async () => {
