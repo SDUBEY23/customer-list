@@ -154,11 +154,20 @@ const Customers = ({ customers, loading }) => {
                   </TableCell>
 
                   <TableCell>
-                    {customer.bids.reduce(
+                    {isByMinimum
+                      ? Math.min.apply(
+                          null,
+                          customer.bids.map((item) => item.amount)
+                        )
+                      : Math.max.apply(
+                          null,
+                          customer.bids.map((item) => item.amount)
+                        )}
+                    {/* {customer.bids.reduce(
                       (prev, bid) =>
                         (prev = prev > bid.amount ? prev : bid.amount),
                       0
-                    )}
+                    )} */}
                   </TableCell>
                 </TableRow>
               ))}
