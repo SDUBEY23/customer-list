@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
 import Customers from "./Components/Customers";
 import Header from "./Components/Header";
+import Bids from "./Components/Bids";
 
 function App() {
   const [customers, setCustomers] = useState([]);
@@ -21,10 +23,19 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <Header />
-      <Customers customers={customers} loading={loading} />
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <div className="App">
+            <Header title="Customer List" />
+            <Customers customers={customers} loading={loading} />
+          </div>
+        </Route>
+        <Route path="/:id">
+          <Bids />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

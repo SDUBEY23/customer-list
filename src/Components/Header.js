@@ -1,10 +1,12 @@
 import React from "react";
 import { AppBar, Toolbar } from "@material-ui/core";
 
-const Header = () => {
+const Header = ({ title }) => {
   return (
     <AppBar position="static">
-      <Toolbar></Toolbar>
+      <Toolbar>
+        <h1>{title}</h1>
+      </Toolbar>
     </AppBar>
   );
 };

@@ -14,6 +14,7 @@ import Avatar from "@material-ui/core/Avatar";
 import TablePagination from "@material-ui/core/TablePagination";
 import CheckIcon from "@material-ui/icons/Check";
 import { ToggleButton } from "@material-ui/lab";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -75,6 +76,8 @@ const Customers = ({ customers, loading }) => {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("bid");
   const [isByMinimum, setIsByMinimum] = useState(false);
+
+  const history = useHistory();
 
   const handlePageChange = (event, newPage) => {
     setPage(newPage);
@@ -142,7 +145,10 @@ const Customers = ({ customers, loading }) => {
             {stableSort(customers, getComparator(order, orderBy))
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((customer) => (
-                <TableRow key={customer.id}>
+                <TableRow
+                  key={customer.id}
+                  onClick={() => history.push(`/${customer.id}`)}
+                >
                   <TableCell>
                     <Avatar alt="userImage" src={customer.avatarUrl} />
                     {customer.firstname + " " + customer.lastname}
